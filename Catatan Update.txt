@@ -1,0 +1,4 @@
+Dokumen yang di Custom
+1.  simrskhanza : frmUtama.java, DlgIGD, DlgKasirRalan,DlgKamarInap,DlgRawatInap,DlgRawatJalan,DlgReg,
+2.  bridging : SatuSehatKirimMedication
+3.  surat : SuratButaWarna, SuratKeteranganCovid, SuratKeteranganSehat, SuratSakit

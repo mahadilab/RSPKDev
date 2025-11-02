@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>KhanzaHMS</comment> 
+    <entry key="WAGATEWAY">maskofa</entry>
+    <entry key="HOSTWA">5k7+C7EnUw9nUv2Nix+DBA==</entry>
+    <entry key="DATABASEWA">0UrT1WN+rQHnqufxxCo7Jg==</entry>
+    <entry key="PORTWA">E0ORmBXhoVXo8Hx2rC3QBQ==</entry>
+    <entry key="USERWA">3fsjwvKJn8IpzysMeNu3bA==</entry>
+    <entry key="PASSWA">YJclwRpDyd6OLNGeJZrJew==</entry>
+    <entry key="FOLDERFILEWA">WA/media</entry>
+    <entry key="NOTIFWA">yes</entry>
+    <entry key="IDGRUPWA">120363043985953596@g.us</entry>
+</properties>

@@ -70,7 +70,7 @@ public final class DlgKunjunganLabRalan extends javax.swing.JDialog {
 
         Object[] rowRwJlDr={
             "No.","Tanggal & Jam","No.Lab","No.RM","Nama Pasien","L","P",
-            "Alamat","Kode","Diagnosa","Jenis Pemeriksaan","Dokter Perujuk/Pengirim","Asal Poli"
+            "Alamat","Kode","Diagnosa","Jenis Pemeriksaan","Dokter Perujuk/Pengirim","Asal Poli","Jenis Bayar"
         };
         tabMode=new DefaultTableModel(null,rowRwJlDr){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
@@ -80,7 +80,7 @@ public final class DlgKunjunganLabRalan extends javax.swing.JDialog {
         tbBangsal.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 13; i++) {
+        for (i = 0; i < 14; i++) {
             TableColumn column = tbBangsal.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(35);
@@ -107,6 +107,9 @@ public final class DlgKunjunganLabRalan extends javax.swing.JDialog {
             }else if(i==11){
                 column.setPreferredWidth(180);
             }else if(i==12){
+                column.setPreferredWidth(130);
+            //TAMBAH JENIS BAYAR
+            }else if(i==13){
                 column.setPreferredWidth(130);
             }
         }
@@ -169,6 +172,7 @@ public final class DlgKunjunganLabRalan extends javax.swing.JDialog {
                 if(penjab.getTable().getSelectedRow()!= -1){
                     kdpenjab.setText(penjab.getTable().getValueAt(penjab.getTable().getSelectedRow(),1).toString());
                     nmpenjab.setText(penjab.getTable().getValueAt(penjab.getTable().getSelectedRow(),2).toString());
+                    //elsenmpenjab.setText(penjab.getTable().getValueAt(penjab.getTable().getSelectedRow(),3).toString());
                 }      
                 kdpenjab.requestFocus();
             }
@@ -363,7 +367,7 @@ public final class DlgKunjunganLabRalan extends javax.swing.JDialog {
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
         BtnAll = new widget.Button();
-        jLabel7 = new widget.Label();
+        BtnKecuali = new widget.Button();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
         PanelInput = new javax.swing.JPanel();
@@ -398,7 +402,7 @@ public final class DlgKunjunganLabRalan extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Kunjungan Lab Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Kunjungan Lab Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -421,7 +425,7 @@ public final class DlgKunjunganLabRalan extends javax.swing.JDialog {
         internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
 
         panelGlass5.setName("panelGlass5"); // NOI18N
-        panelGlass5.setPreferredSize(new java.awt.Dimension(55, 55));
+        panelGlass5.setPreferredSize(new java.awt.Dimension(898, 55));
         panelGlass5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         label11.setText("Tanggal :");
@@ -493,9 +497,18 @@ public final class DlgKunjunganLabRalan extends javax.swing.JDialog {
         });
         panelGlass5.add(BtnAll);
 
-        jLabel7.setName("jLabel7"); // NOI18N
-        jLabel7.setPreferredSize(new java.awt.Dimension(30, 23));
-        panelGlass5.add(jLabel7);
+        BtnKecuali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cancel.png"))); // NOI18N
+        BtnKecuali.setMnemonic('2');
+        BtnKecuali.setText("Kecuali");
+        BtnKecuali.setToolTipText("");
+        BtnKecuali.setName("BtnKecuali"); // NOI18N
+        BtnKecuali.setPreferredSize(new java.awt.Dimension(100, 23));
+        BtnKecuali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKecualiActionPerformed(evt);
+            }
+        });
+        panelGlass5.add(BtnKecuali);
 
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -561,7 +574,7 @@ public final class DlgKunjunganLabRalan extends javax.swing.JDialog {
         PanelInput.add(ChkInput, java.awt.BorderLayout.PAGE_END);
 
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(100, 104));
+        FormInput.setPreferredSize(new java.awt.Dimension(100, 110));
         FormInput.setLayout(null);
 
         label17.setText("Unit/Poli :");
@@ -614,6 +627,11 @@ public final class DlgKunjunganLabRalan extends javax.swing.JDialog {
         kdpenjab.setEditable(false);
         kdpenjab.setName("kdpenjab"); // NOI18N
         kdpenjab.setPreferredSize(new java.awt.Dimension(75, 23));
+        kdpenjab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kdpenjabActionPerformed(evt);
+            }
+        });
         kdpenjab.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 kdpenjabKeyPressed(evt);
@@ -1043,6 +1061,24 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         isForm();
     }//GEN-LAST:event_ChkInputActionPerformed
 
+    private void BtnKecualiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKecualiActionPerformed
+//        TCari.setText("");
+//        kdpoli.setText("");
+//        nmpoli.setText("");
+//        kddokter.setText("");
+//        nmdokter.setText("");
+        kdpenjab.getText();
+        nmpenjab.getText();
+//        nmkabupaten.setText("");
+//        nmkecamatan.setText("");
+//        nmkelurahan.setText("");
+        tampil2();
+    }//GEN-LAST:event_BtnKecualiActionPerformed
+
+    private void kdpenjabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kdpenjabActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kdpenjabActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1062,6 +1098,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
     private widget.Button BtnCari;
+    private widget.Button BtnKecuali;
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
     private widget.Button BtnSeek2;
@@ -1080,7 +1117,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Tanggal Tgl2;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel6;
-    private widget.Label jLabel7;
     private widget.TextBox kddokter;
     private widget.TextBox kdpenjab;
     private widget.TextBox kdpoli;
@@ -1107,7 +1143,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); 
             Valid.tabelKosong(tabMode);   
             ps=koneksi.prepareStatement(
-                    "select reg_periksa.no_rawat,periksa_lab.tgl_periksa,periksa_lab.jam,periksa_lab.dokter_perujuk, " +
+                    "select reg_periksa.no_rawat,periksa_lab.tgl_periksa,periksa_lab.jam,periksa_lab.dokter_perujuk,reg_periksa.kd_pj,  " +
+                    "penjab.png_jawab, "+
                     "dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,"+
                     "concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab)as almt_pj,"+
                     "pasien.jk,concat(reg_periksa.umurdaftar,reg_periksa.sttsumur) as umur " +
@@ -1121,6 +1158,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     "periksa_lab.status='Ralan' and periksa_lab.tgl_periksa between ? and ? and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and penjab.png_jawab like ? and kabupaten.nm_kab like ? and kecamatan.nm_kec like ? and kelurahan.nm_kel like ? and reg_periksa.no_rkm_medis like ? or " +
                     "periksa_lab.status='Ralan' and periksa_lab.tgl_periksa between ? and ? and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and penjab.png_jawab like ? and kabupaten.nm_kab like ? and kecamatan.nm_kec like ? and kelurahan.nm_kel like ? and pasien.nm_pasien like ? or " +
                     "periksa_lab.status='Ralan' and periksa_lab.tgl_periksa between ? and ? and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and penjab.png_jawab like ? and kabupaten.nm_kab like ? and kecamatan.nm_kec like ? and kelurahan.nm_kel like ? and pasien.alamat like ? "+
+                    //"periksa_lab.status='Ralan' and periksa_lab.tgl_periksa between ? and ? and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and penjab.png_jawab like ? and kabupaten.nm_kab like ? and kecamatan.nm_kec like ? and kelurahan.nm_kel like ? and reg_periksa.kd_pj like ? "+
                     "group by reg_periksa.no_rawat,periksa_lab.tgl_periksa,periksa_lab.jam order by periksa_lab.tgl_periksa,reg_periksa.jam_reg");
             try {
                 ps.setString(1,Valid.SetTgl(Tgl1.getSelectedItem()+""));
@@ -1168,6 +1206,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 ps.setString(43,"%"+nmkecamatan.getText().trim()+"%");
                 ps.setString(44,"%"+nmkelurahan.getText().trim()+"%");
                 ps.setString(45,"%"+TCari.getText().trim()+"%");
+                //ps.setString(46,"kd_pj");
                 rs=ps.executeQuery();
                 i=1;   
                 laki=0;per=0;jmldiagnosa=0;jmlnolab=0;
@@ -1271,7 +1310,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     tabMode.addRow(new Object[]{
                         i,rs.getString("tgl_periksa")+" "+rs.getString("jam"),no_lab,rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),umurlk,umurpr,rs.getString("almt_pj"),kddiangnosa,diagnosa,
-                        tindakan,rs.getString("nm_dokter"),rs.getString("nm_poli")
+                        tindakan,rs.getString("nm_dokter"),rs.getString("nm_poli"),rs.getString("png_jawab")
                     });                
                     i++;
                 }
@@ -1295,7 +1334,222 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             System.out.println("Notifikasi : "+e);
         }
     }
+    
+    //KECUALI BERDASARKAN FILTER kdpenjab
+    public void tampil2() {
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Valid.tabelKosong(tabMode);
 
+            // Tentukan operator dan nilai filter berdasarkan kondisi nmpenjab
+            String operatorPenjab;
+            String filterPenjab;
+
+            if (!nmpenjab.getText().trim().equals("")) {
+                // Jika nmpenjab terisi, gunakan NOT LIKE untuk mengecualikan
+                operatorPenjab = "NOT LIKE";
+                filterPenjab = "%" + nmpenjab.getText().trim() + "%";
+            } else {
+                // Jika nmpenjab kosong, gunakan LIKE dengan wildcard penuh
+                operatorPenjab = "LIKE";
+                filterPenjab = "%";
+            }
+
+            ps = koneksi.prepareStatement(
+                    "select reg_periksa.no_rawat,periksa_lab.tgl_periksa,periksa_lab.jam,periksa_lab.dokter_perujuk,reg_periksa.kd_pj,  "
+                    + "penjab.png_jawab, "
+                    + "dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,"
+                    + "concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab)as almt_pj,"
+                    + "pasien.jk,concat(reg_periksa.umurdaftar,reg_periksa.sttsumur) as umur "
+                    + "from periksa_lab inner join reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab "
+                    + "inner join kabupaten inner join kecamatan inner join kelurahan "
+                    + "on periksa_lab.dokter_perujuk=dokter.kd_dokter and periksa_lab.no_rawat=reg_periksa.no_rawat "
+                    + "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj "
+                    + "and reg_periksa.kd_poli=poliklinik.kd_poli and pasien.kd_kab=kabupaten.kd_kab and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kel=kelurahan.kd_kel "
+                    + "where periksa_lab.status='Ralan' and periksa_lab.tgl_periksa between ? and ? and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and penjab.png_jawab " + operatorPenjab + " ? and kabupaten.nm_kab like ? and kecamatan.nm_kec like ? and kelurahan.nm_kel like ? and poliklinik.nm_poli like ? or "
+                    + "periksa_lab.status='Ralan' and periksa_lab.tgl_periksa between ? and ? and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and penjab.png_jawab " + operatorPenjab + " ? and kabupaten.nm_kab like ? and kecamatan.nm_kec like ? and kelurahan.nm_kel like ? and dokter.nm_dokter like ? or "
+                    + "periksa_lab.status='Ralan' and periksa_lab.tgl_periksa between ? and ? and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and penjab.png_jawab " + operatorPenjab + " ? and kabupaten.nm_kab like ? and kecamatan.nm_kec like ? and kelurahan.nm_kel like ? and reg_periksa.no_rkm_medis like ? or "
+                    + "periksa_lab.status='Ralan' and periksa_lab.tgl_periksa between ? and ? and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and penjab.png_jawab " + operatorPenjab + " ? and kabupaten.nm_kab like ? and kecamatan.nm_kec like ? and kelurahan.nm_kel like ? and pasien.nm_pasien like ? or "
+                    + "periksa_lab.status='Ralan' and periksa_lab.tgl_periksa between ? and ? and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and penjab.png_jawab " + operatorPenjab + " ? and kabupaten.nm_kab like ? and kecamatan.nm_kec like ? and kelurahan.nm_kel like ? and pasien.alamat like ? "
+                    + "group by reg_periksa.no_rawat,periksa_lab.tgl_periksa,periksa_lab.jam order by periksa_lab.tgl_periksa,reg_periksa.jam_reg");
+            try {
+                ps.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps.setString(3, "%" + nmpoli.getText().trim() + "%");
+                ps.setString(4, "%" + nmdokter.getText().trim() + "%");
+                ps.setString(5, filterPenjab); // Parameter kondisional
+                ps.setString(6, "%" + nmkabupaten.getText().trim() + "%");
+                ps.setString(7, "%" + nmkecamatan.getText().trim() + "%");
+                ps.setString(8, "%" + nmkelurahan.getText().trim() + "%");
+                ps.setString(9, "%" + TCari.getText().trim() + "%");
+                ps.setString(10, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(11, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps.setString(12, "%" + nmpoli.getText().trim() + "%");
+                ps.setString(13, "%" + nmdokter.getText().trim() + "%");
+                ps.setString(14, filterPenjab); // Parameter kondisional
+                ps.setString(15, "%" + nmkabupaten.getText().trim() + "%");
+                ps.setString(16, "%" + nmkecamatan.getText().trim() + "%");
+                ps.setString(17, "%" + nmkelurahan.getText().trim() + "%");
+                ps.setString(18, "%" + TCari.getText().trim() + "%");
+                ps.setString(19, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(20, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps.setString(21, "%" + nmpoli.getText().trim() + "%");
+                ps.setString(22, "%" + nmdokter.getText().trim() + "%");
+                ps.setString(23, filterPenjab); // Parameter kondisional
+                ps.setString(24, "%" + nmkabupaten.getText().trim() + "%");
+                ps.setString(25, "%" + nmkecamatan.getText().trim() + "%");
+                ps.setString(26, "%" + nmkelurahan.getText().trim() + "%");
+                ps.setString(27, "%" + TCari.getText().trim() + "%");
+                ps.setString(28, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(29, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps.setString(30, "%" + nmpoli.getText().trim() + "%");
+                ps.setString(31, "%" + nmdokter.getText().trim() + "%");
+                ps.setString(32, filterPenjab); // Parameter kondisional
+                ps.setString(33, "%" + nmkabupaten.getText().trim() + "%");
+                ps.setString(34, "%" + nmkecamatan.getText().trim() + "%");
+                ps.setString(35, "%" + nmkelurahan.getText().trim() + "%");
+                ps.setString(36, "%" + TCari.getText().trim() + "%");
+                ps.setString(37, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(38, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps.setString(39, "%" + nmpoli.getText().trim() + "%");
+                ps.setString(40, "%" + nmdokter.getText().trim() + "%");
+                ps.setString(41, filterPenjab); // Parameter kondisional
+                ps.setString(42, "%" + nmkabupaten.getText().trim() + "%");
+                ps.setString(43, "%" + nmkecamatan.getText().trim() + "%");
+                ps.setString(44, "%" + nmkelurahan.getText().trim() + "%");
+                ps.setString(45, "%" + TCari.getText().trim() + "%");
+                rs = ps.executeQuery();
+                i = 1;
+                laki = 0;
+                per = 0;
+                jmldiagnosa = 0;
+                jmlnolab = 0;
+                while (rs.next()) {
+                    umurlk = "";
+                    umurpr = "";
+                    switch (rs.getString("jk")) {
+                        case "L":
+                            umurlk = rs.getString("umur");
+                            laki++;
+                            break;
+                        case "P":
+                            umurpr = rs.getString("umur");
+                            per++;
+                            break;
+                    }
+                    diagnosa = "";
+                    kddiangnosa = "";
+                    ps2 = koneksi.prepareStatement("select penyakit.kd_penyakit,penyakit.nm_penyakit from penyakit inner join diagnosa_pasien "
+                            + "on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit "
+                            + "where diagnosa_pasien.no_rawat=? order by prioritas asc limit 1");
+                    try {
+                        ps2.setString(1, rs.getString("no_rawat"));
+                        rs2 = ps2.executeQuery();
+                        if (rs2.next()) {
+                            kddiangnosa = rs2.getString(1);
+                            diagnosa = rs2.getString(2);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif :" + e);
+                    } finally {
+                        if (rs2 != null) {
+                            rs2.close();
+                        }
+                        if (ps2 != null) {
+                            ps2.close();
+                        }
+                    }
+                    if (!kddiangnosa.equals("")) {
+                        jmldiagnosa++;
+                    }
+                    no_lab = Sequel.cariIsi(
+                            "select noorder from permintaan_lab where no_rawat='" + rs.getString("no_rawat") + "' "
+                            + "and tgl_hasil='" + rs.getString("tgl_periksa") + "' and jam_hasil='" + rs.getString("jam") + "' "
+                    );
+                    if (!no_lab.equals("")) {
+                        jmlnolab++;
+                    }
+
+                    tindakan = "";
+                    ps2 = koneksi.prepareStatement(
+                            "select trim(template_laboratorium.Pemeriksaan) from detail_periksa_lab inner join template_laboratorium "
+                            + "on template_laboratorium.id_template=detail_periksa_lab.id_template where "
+                            + "detail_periksa_lab.no_rawat=? and detail_periksa_lab.tgl_periksa=? and detail_periksa_lab.jam=? ");
+                    try {
+                        ps2.setString(1, rs.getString("no_rawat"));
+                        ps2.setString(2, rs.getString("tgl_periksa"));
+                        ps2.setString(3, rs.getString("jam"));
+                        rs2 = ps2.executeQuery();
+                        while (rs2.next()) {
+                            tindakan = rs2.getString(1) + "," + tindakan;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif :" + e);
+                    } finally {
+                        if (rs2 != null) {
+                            rs2.close();
+                        }
+                        if (ps2 != null) {
+                            ps2.close();
+                        }
+                    }
+
+                    ps2 = koneksi.prepareStatement(
+                            "select trim(jns_perawatan_lab.nm_perawatan) from detail_periksa_labpa inner join jns_perawatan_lab "
+                            + "on jns_perawatan_lab.kd_jenis_prw=detail_periksa_labpa.kd_jenis_prw where "
+                            + "detail_periksa_labpa.no_rawat=? and detail_periksa_labpa.tgl_periksa=? and detail_periksa_labpa.jam=? ");
+                    try {
+                        ps2.setString(1, rs.getString("no_rawat"));
+                        ps2.setString(2, rs.getString("tgl_periksa"));
+                        ps2.setString(3, rs.getString("jam"));
+                        rs2 = ps2.executeQuery();
+                        while (rs2.next()) {
+                            tindakan = rs2.getString(1) + "," + tindakan;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif :" + e);
+                    } finally {
+                        if (rs2 != null) {
+                            rs2.close();
+                        }
+                        if (ps2 != null) {
+                            ps2.close();
+                        }
+                    }
+
+                    if (tindakan.endsWith(",")) {
+                        tindakan = tindakan.substring(0, tindakan.length() - 1);
+                    }
+
+                    tabMode.addRow(new Object[]{
+                        i, rs.getString("tgl_periksa") + " " + rs.getString("jam"), no_lab, rs.getString("no_rkm_medis"),
+                        rs.getString("nm_pasien"), umurlk, umurpr, rs.getString("almt_pj"), kddiangnosa, diagnosa,
+                        tindakan, rs.getString("nm_dokter"), rs.getString("nm_poli"), rs.getString("png_jawab")
+                    });
+                    i++;
+                }
+                if (i > 1) {
+                    tabMode.addRow(new Object[]{
+                        ">>", "Total : ", jmlnolab, (i - 1), "", laki, per, "", jmldiagnosa, "", "", "", ""
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+            this.setCursor(Cursor.getDefaultCursor());
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+
+    
     private void getData() {
         int row=tbBangsal.getSelectedRow();
         if(row!= -1){

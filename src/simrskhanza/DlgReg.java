@@ -97,6 +97,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import permintaan.DlgBookingPeriksa;
 import permintaan.DlgPermintaanKonsultasiMedik;
 import permintaan.DlgPermintaanLaboratorium;
 import permintaan.DlgPermintaanPelayananInformasiObat;
@@ -1014,9 +1015,12 @@ public final class DlgReg extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        //TAMBAH TOMBOL
         btn_riwayat = new widget.Button();
         btn_CetakRM = new widget.Button();
-       //tambah tombol
+        CekBookingOnline = new widget.Button();
+        BookingRegistrasi = new widget.Button();
+        
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnDataRM = new javax.swing.JMenu();
         MnRMRawatJalan = new javax.swing.JMenu();
@@ -6575,35 +6579,52 @@ public final class DlgReg extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnSeek4);
 
-        //tambah tombol
-        btn_riwayat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/EDIT2.png"))); // NOI18N
-        btn_riwayat.setText("Riwayat");
-        btn_riwayat.setMaximumSize(new java.awt.Dimension(100, 22));
-        btn_riwayat.setMinimumSize(new java.awt.Dimension(100, 22));
+        //TAMBAH TOMBOL
+        btn_riwayat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clock2.png"))); // NOI18N
+        btn_riwayat.setText("");
+        btn_riwayat.setToolTipText("Lihat Riwayat");
+        //btn_riwayat.setMaximumSize(new java.awt.Dimension(28, 23));
+        //btn_riwayat.setMinimumSize(new java.awt.Dimension(22, 22));
         btn_riwayat.setName("btn_riwayat"); // NOI18N
-        btn_riwayat.setPreferredSize(new java.awt.Dimension(98, 22));
+        btn_riwayat.setPreferredSize(new java.awt.Dimension(28, 22));
         btn_riwayat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_riwayatActionPerformed(evt);
             }
         });
         panelGlass8.add(btn_riwayat);
-        btn_riwayat.setBounds(60, 170, 98, 22);
+        //btn_riwayat.setBounds(60, 170, 22, 22);
         
-        btn_CetakRM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2.png"))); // NOI18N
-        btn_CetakRM.setText("Cetak RM");
-        btn_CetakRM.setMaximumSize(new java.awt.Dimension(100, 22));
-        btn_CetakRM.setMinimumSize(new java.awt.Dimension(100, 22));
+        btn_CetakRM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/printer.png"))); // NOI18N
+        btn_CetakRM.setText("");
+        btn_CetakRM.setToolTipText("Cetak RM");
+        //btn_CetakRM.setMaximumSize(new java.awt.Dimension(22, 22));
+        //btn_CetakRM.setMinimumSize(new java.awt.Dimension(22, 22));
         btn_CetakRM.setName("btn_CetakRM"); // NOI18N
-        btn_CetakRM.setPreferredSize(new java.awt.Dimension(98, 22));
+        btn_CetakRM.setPreferredSize(new java.awt.Dimension(28, 23));
         btn_CetakRM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_CetakRMActionPerformed(evt);
             }
         });
         panelGlass8.add(btn_CetakRM);
-        btn_CetakRM.setBounds(60, 170, 98, 22);
-        //tambah tombol
+        //btn_CetakRM.setBounds(60, 170, 22, 22);
+        
+        CekBookingOnline.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/web-link.png"))); // NOI18N
+        CekBookingOnline.setText("");
+        CekBookingOnline.setToolTipText("Cek Booking Online");
+        //CekBookingOnline.setMaximumSize(new java.awt.Dimension(22, 22));
+        //CekBookingOnline.setMinimumSize(new java.awt.Dimension(22, 22));
+        CekBookingOnline.setName("CekBookingOnline"); // NOI18N
+        CekBookingOnline.setPreferredSize(new java.awt.Dimension(28, 23));
+        CekBookingOnline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CekBookingOnlineActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(CekBookingOnline);
+        //CekBookingOnline.setBounds(60, 170, 22, 22);
+        //TAMBAH TOMBOL
 
         jPanel2.add(panelGlass8, java.awt.BorderLayout.PAGE_START);
 
@@ -16282,7 +16303,14 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }
  
     private void btn_CetakRMActionPerformed(java.awt.event.ActionEvent evt) {                                            
-         MnLembarRalanActionPerformed(evt);
+        MnLembarRalanActionPerformed(evt);
+    }
+    private void CekBookingOnlineActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgBookingPeriksa aplikasi=new DlgBookingPeriksa();
+        aplikasi.isCek();
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
     }
     
     /**
@@ -16718,7 +16746,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Table tbPetugas;
     private widget.Table tbPetugas2;
     //tambah tombol
-    private widget.Button btn_riwayat,btn_CetakRM;
+    private widget.Button btn_riwayat,btn_CetakRM,CekBookingOnline,BookingRegistrasi;
     // End of variables declaration//GEN-END:variables
     private javax.swing.JMenuItem MnSkorBromagePascaAnestesi,MnPenilaianRisikoJatuhDewasa,MnPenilaianRisikoJatuhAnak,MnPenilaianRisikoJatuhLansia,MnPenilaianRisikoJatuhNeonatus,MnPenilaianRisikoJatuhGeriatri,MnPenilaianRisikoJatuhPsikiatri,MnPenilaianLanjutanSkriningFungsional,
             MnPenilaianPreInduksi,MnHasilPemeriksaanUSGUrologi,MnHasilPemeriksaanUSGGynecologi,MnHasilPemeriksaanEKG,MnSudahTerbitSEP,MnPenatalaksanaanTerapiOkupasi,MnHasilPemeriksaanUSGNeonatus,MnHasilEndoskopiFaringLaring,MnHasilEndoskopiHidung,MnHasilEndoskopiTelinga,
@@ -18955,41 +18983,41 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             emptTeks();
         }
     }
-    public void NotifWa() {
-        petugas = Sequel.cariIsi("select nama from pegawai where nik=?", akses.getkode());
-        if(notif.equals("yes")){
-            pesan = "_*[PESAN SISTEM]*_"
-                    +"\n"
-                    + "\n*Pasien Baru di Daftarkan*"
-                    + "\n"
-                    + "Nama        : " + TPasien.getText() + "\n"
-                    + "No RM       : " + TNoRM.getText() + "\n"
-                    + "Dokter      : *" + TDokter.getText() + "*\n"
-                    + "Unit        : *" + TPoli.getText() + "*\n"
-                    + "Cara Bayar  : *" + nmpnj.getText() + "*\n"
-                    + "Petugas     : *" + petugas + "*\n"
-                    + "==============================\n";
-            tanggaljamkirim = Valid.SetTgl(DTPReg.getSelectedItem() + "") + " " + CmbJam.getSelectedItem() + ":" + CmbMenit.getSelectedItem() + ":" + CmbDetik.getSelectedItem();
-            try {
-                String sql = "INSERT INTO wa_outbox (NOMOR, NOWA, PESAN, TANGGAL_JAM, STATUS, SOURCE, SENDER, SUCCESS, RESPONSE, REQUEST, TYPE, FILE) "
-                            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                ps = koneksiwa.prepareStatement(sql);
-                ps.setLong(1, 0);
-                ps.setString(2, idgrup);
-                ps.setString(3, pesan);
-                ps.setString(4, tanggaljamkirim);
-                ps.setString(5, "ANTRIAN");
-                ps.setString(6, "RAWAT JALAN");
-                ps.setString(7, "NODEJS");
-                ps.setString(8, "");
-                ps.setString(9, "");
-                ps.setString(10, "");
-                ps.setString(11, "TEXT");
-                ps.setString(12, "");
-                ps.executeUpdate();
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            }
-        }
-    }
+//    public void NotifWa() {
+//        petugas = Sequel.cariIsi("select nama from pegawai where nik=?", akses.getkode());
+//        if(notif.equals("yes")){
+//            pesan = "_*[PESAN SISTEM]*_"
+//                    +"\n"
+//                    + "\n*Pasien Baru di Daftarkan*"
+//                    + "\n"
+//                    + "Nama        : " + TPasien.getText() + "\n"
+//                    + "No RM       : " + TNoRM.getText() + "\n"
+//                    + "Dokter      : *" + TDokter.getText() + "*\n"
+//                    + "Unit        : *" + TPoli.getText() + "*\n"
+//                    + "Cara Bayar  : *" + nmpnj.getText() + "*\n"
+//                    + "Petugas     : *" + petugas + "*\n"
+//                    + "==============================\n";
+//            tanggaljamkirim = Valid.SetTgl(DTPReg.getSelectedItem() + "") + " " + CmbJam.getSelectedItem() + ":" + CmbMenit.getSelectedItem() + ":" + CmbDetik.getSelectedItem();
+//            try {
+//                String sql = "INSERT INTO wa_outbox (NOMOR, NOWA, PESAN, TANGGAL_JAM, STATUS, SOURCE, SENDER, SUCCESS, RESPONSE, REQUEST, TYPE, FILE) "
+//                            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+//                ps = koneksiwa.prepareStatement(sql);
+//                ps.setLong(1, 0);
+//                ps.setString(2, idgrup);
+//                ps.setString(3, pesan);
+//                ps.setString(4, tanggaljamkirim);
+//                ps.setString(5, "ANTRIAN");
+//                ps.setString(6, "RAWAT JALAN");
+//                ps.setString(7, "NODEJS");
+//                ps.setString(8, "");
+//                ps.setString(9, "");
+//                ps.setString(10, "");
+//                ps.setString(11, "TEXT");
+//                ps.setString(12, "");
+//                ps.executeUpdate();
+//            } catch (Exception e) {
+//                System.out.println("Notifikasi : " + e);
+//            }
+//        }
+//    }
 }

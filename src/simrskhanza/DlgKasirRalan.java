@@ -28,6 +28,7 @@ import bridging.INACBGPerawatanCorona;
 import bridging.InhealthDataSJP;
 import bridging.PCareDataPendaftaran;
 import bridging.SisruteRujukanKeluar;
+import fungsi.WarnaRSPK;
 import inventory.DlgResepObat;
 import inventory.DlgPemberianObat;
 import laporan.DlgDiagnosaPenyakit;
@@ -353,10 +354,10 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             if(koneksiDB.AKTIFKANWARNARALAN().equals("yes")){
                 tbKasirRalan.setDefaultRenderer(Object.class, new WarnaTableKasirRalan());
             }else{
-                tbKasirRalan.setDefaultRenderer(Object.class, new WarnaTable());
+                tbKasirRalan.setDefaultRenderer(Object.class, new WarnaRSPK());
             }
         } catch (Exception e) {
-            tbKasirRalan.setDefaultRenderer(Object.class, new WarnaTable());
+            tbKasirRalan.setDefaultRenderer(Object.class, new WarnaRSPK());
         }
         
         tabModekasir2=new DefaultTableModel(null,new String[]{

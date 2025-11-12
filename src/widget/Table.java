@@ -5,6 +5,9 @@ import javax.swing.JTable;
 import java.awt.Component;
 import java.awt.Font;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+import javax.swing.BorderFactory;
+import java.awt.Dimension;
 
 /**
  *
@@ -49,5 +52,14 @@ public class Table extends JTable {
                 return c;
             }
         });
+        // Judul kolom
+        JTableHeader header = getTableHeader();
+        header.setForeground(Color.WHITE);
+        header.setBackground(new Color(0,0,0)); // Hitam
+        header.setFont(new java.awt.Font("Tahoma", Font.BOLD, 11));
+        header.setBorder(BorderFactory.createLineBorder(new Color(0, 80, 40)));
+        header.setPreferredSize(new Dimension(header.getPreferredSize().width, 35));
+        setIntercellSpacing(new Dimension(1, 1));
+        header.setDefaultRenderer(new MultiLineHeader());
     }
 }

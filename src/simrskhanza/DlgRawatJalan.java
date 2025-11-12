@@ -2676,7 +2676,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         
         //TAMBAH TOMBOL
         btnCariData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        btnCariData.setText("Cari Data");
+        btnCariData.setToolTipText("Cari Data");
         btnCariData.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnCariData.setName("btnCariData"); // NOI18N
         btnCariData.addActionListener(new java.awt.event.ActionListener() {
@@ -2685,7 +2685,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(btnCariData);
-        btnCariData.setBounds(920, 10, 110, 23);
+        btnCariData.setBounds(920, 10, 28, 23);
         
         lblJnsSurat.setText("Dokumen :");
         lblJnsSurat.setName("lblJnsSurat"); // NOI18N

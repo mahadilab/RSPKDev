@@ -60,4 +60,22 @@ public class koneksiDBWa {
         }
         return var;
     }
+    public static String NOTIFWABOOKING() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database-extra.xml"));
+            var = prop.getProperty("NOTIFWAREGISTRASI");
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
+    public static String NOTIFWAREGISTRASI() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database-extra.xml"));
+            var = prop.getProperty("NOTIFWAREGISTRASI");
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
 }

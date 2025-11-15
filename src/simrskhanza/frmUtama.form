@@ -485,7 +485,7 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="23/10/2025"/>
+            <StringItem index="0" value="15/11/2025"/>
           </StringArray>
         </Property>
         <Property name="displayFormat" type="java.lang.String" value="dd/MM/yyyy"/>
@@ -9909,7 +9909,7 @@
                   <Color blue="1d" green="1d" red="1d" type="rgb"/>
                 </Property>
                 <Property name="backgroundImage" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/picture/wallpaper.jpg"/>
+                  <Image iconType="3" name="/picture/bg.png"/>
                 </Property>
                 <Property name="backgroundImageType" type="int" value="9"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

@@ -126,7 +126,9 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
             }else if(i==6){
                 column.setPreferredWidth(110);
             }else if(i==7){
-                column.setPreferredWidth(85);
+                //column.setPreferredWidth(85);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }else if(i==8){
                 column.setPreferredWidth(110);
             }else if(i==9){
@@ -392,6 +394,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         LTotal = new widget.Label();
         jLabel7 = new widget.Label();
         LTotalTagihan = new widget.Label();
+        label1 = new widget.Label();
         TabRawat = new javax.swing.JTabbedPane();
         Scroll = new widget.ScrollPane();
         tbResep = new widget.Table();
@@ -614,7 +617,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         internalFrame1.add(panelisi3, java.awt.BorderLayout.PAGE_END);
 
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(440, 107));
+        FormInput.setPreferredSize(new java.awt.Dimension(914, 129));
         FormInput.setLayout(null);
 
         TNoRw.setHighlighter(null);
@@ -698,7 +701,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         jLabel8.setBounds(0, 42, 72, 23);
 
         DTPBeri.setForeground(new java.awt.Color(50, 70, 50));
-        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-02-2025" }));
+        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-11-2025" }));
         DTPBeri.setDisplayFormat("dd-MM-yyyy");
         DTPBeri.setName("DTPBeri"); // NOI18N
         DTPBeri.setOpaque(false);
@@ -802,6 +805,14 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         LTotalTagihan.setPreferredSize(new java.awt.Dimension(80, 23));
         FormInput.add(LTotalTagihan);
         LTotalTagihan.setBounds(588, 42, 95, 23);
+
+        label1.setForeground(new java.awt.Color(255, 0, 51));
+        label1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label1.setText("* Resep yang di input, akan terkirim ke Database Satu Sehat Kemenkes");
+        label1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        label1.setName("label1"); // NOI18N
+        FormInput.add(label1);
+        label1.setBounds(70, 100, 360, 20);
 
         internalFrame1.add(FormInput, java.awt.BorderLayout.PAGE_START);
 
@@ -1591,6 +1602,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private javax.swing.JPanel jPanel3;
+    private widget.Label label1;
     private widget.Label label12;
     private widget.Label label9;
     private widget.panelisi panelisi3;

@@ -7577,7 +7577,7 @@ public class frmUtama extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(50, 50, 50));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/bell.png"))); // NOI18N
-        jLabel9.setText("Update: 30/10/2025");
+        jLabel9.setText("Update: 17/11/2025");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel9.setIconTextGap(3);
         jLabel9.setName("jLabel9"); // NOI18N

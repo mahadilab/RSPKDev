@@ -324,6 +324,7 @@ public final class RMDataResumePasien extends javax.swing.JDialog {
         BtnDokter4 = new widget.Button();
         BtnDokter5 = new widget.Button();
         BtnDokter6 = new widget.Button();
+        btnGet = new widget.Button();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -577,7 +578,7 @@ public final class RMDataResumePasien extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-11-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -591,7 +592,7 @@ public final class RMDataResumePasien extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-11-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1199,6 +1200,20 @@ public final class RMDataResumePasien extends javax.swing.JDialog {
         });
         FormInput.add(BtnDokter6);
         BtnDokter6.setBounds(212, 153, 28, 23);
+
+        btnGet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        btnGet.setToolTipText("Cari Data");
+        btnGet.setEnabled(false);
+        btnGet.setName("btnGet"); // NOI18N
+        btnGet.setPreferredSize(new java.awt.Dimension(23, 22));
+        btnGet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGetActionPerformed(evt);
+            }
+        });
+        FormInput.add(btnGet);
+        btnGet.setBounds(800, 10, 23, 22);
+        btnGet.getAccessibleContext().setAccessibleName("btnGet");
 
         scrollInput.setViewportView(FormInput);
 
@@ -2028,6 +2043,79 @@ public final class RMDataResumePasien extends javax.swing.JDialog {
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnDokter6ActionPerformed
 
+    private void btnGetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetActionPerformed
+        Sequel.cariIsi("select reg_periksa.no_rkm_medis from reg_periksa where reg_periksa.no_rawat='"+TNoRw.getText()+"' ",TNoRM);
+         if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_igd where no_rawat='"+TNoRw.getText()+"' ")>0){
+            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',ket_fisik)as keluhan from penilaian_medis_igd where no_rawat=?",TNoRw.getText())); 
+            PemeriksaanPenunjang.setText(Sequel.cariIsi("select rad from penilaian_medis_igd where no_rawat=?",TNoRw.getText())); 
+            HasilLaborat.setText(Sequel.cariIsi("select lab from penilaian_medis_igd where no_rawat=?",TNoRw.getText())); 
+            Obat2an.setText(Sequel.cariIsi("select tata from penilaian_medis_igd where no_rawat=?",TNoRw.getText())); 
+         }else if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_ralan where no_rawat='"+TNoRw.getText()+"' ")>0){ 
+            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',ket_fisik)as keluhan from penilaian_medis_ralan where no_rawat=?",TNoRw.getText())); 
+            PemeriksaanPenunjang.setText(Sequel.cariIsi("select penunjang from penilaian_medis_ralan where no_rawat=?",TNoRw.getText())); 
+            Obat2an.setText(Sequel.cariIsi("select tata from penilaian_medis_ralan_anak where no_rawat=?",TNoRw.getText())); 
+         }else if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_ralan_anak where no_rawat='"+TNoRw.getText()+"' ")>0){ 
+            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',ket_fisik)as keluhan from penilaian_medis_ralan_anak where no_rawat=?",TNoRw.getText())); 
+            PemeriksaanPenunjang.setText(Sequel.cariIsi("select penujang from penilaian_medis_ralan_anak where no_rawat=?",TNoRw.getText())); 
+         }else if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_ralan_bedah where no_rawat='"+TNoRw.getText()+"' ")>0){
+            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',lainnya)as keluhan from penilaian_medis_ralan_bedah where no_rawat=?",TNoRw.getText())); 
+            PemeriksaanPenunjang.setText(Sequel.cariIsi("select rad from penilaian_medis_ralan_bedah where no_rawat=?",TNoRw.getText())); 
+            HasilLaborat.setText(Sequel.cariIsi("select lab from penilaian_medis_ralan_bedah where no_rawat=?",TNoRw.getText())); 
+            Obat2an.setText(Sequel.cariIsi("select terapi from penilaian_medis_ralan_bedah where no_rawat=?",TNoRw.getText())); 
+         }else if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_ralan_bedah_mulut where no_rawat='"+TNoRw.getText()+"' ")>0){
+            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',pemeriksaan)as keluhan from penilaian_medis_ralan_bedah_mulut where no_rawat=?",TNoRw.getText())); 
+            PemeriksaanPenunjang.setText(Sequel.cariIsi("select rad from penilaian_medis_ralan_bedah_mulut where no_rawat=?",TNoRw.getText())); 
+            HasilLaborat.setText(Sequel.cariIsi("select lab from penilaian_medis_ralan_bedah_mulut where no_rawat=?",TNoRw.getText())); 
+            Obat2an.setText(Sequel.cariIsi("select terapi from penilaian_medis_ralan_geriatri where no_rawat=?",TNoRw.getText())); 
+         }else if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_ralan_geriatri where no_rawat='"+TNoRw.getText()+"' ")>0){
+            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',lainnya)as keluhan from penilaian_medis_ralan_geriatri where no_rawat=?",TNoRw.getText())); 
+            PemeriksaanPenunjang.setText(Sequel.cariIsi("select rad from penilaian_medis_ralan_geriatri where no_rawat=?",TNoRw.getText())); 
+            HasilLaborat.setText(Sequel.cariIsi("select lab from penilaian_medis_ralan_geriatri where no_rawat=?",TNoRw.getText())); 
+            Obat2an.setText(Sequel.cariIsi("select terapi from penilaian_medis_ralan_geriatri where no_rawat=?",TNoRw.getText())); 
+         }else if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_ralan_kandungan where no_rawat='"+TNoRw.getText()+"' ")>0){
+            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',ket_fisik)as keluhan from penilaian_medis_ralan_kandungan where no_rawat=?",TNoRw.getText())); 
+            HasilLaborat.setText(Sequel.cariIsi("select lab from penilaian_medis_ralan_kandungan where no_rawat=?",TNoRw.getText())); 
+            Obat2an.setText(Sequel.cariIsi("select tata from penilaian_medis_ralan_kandungan where no_rawat=?",TNoRw.getText()));    
+         }else if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_ralan_mata where no_rawat='"+TNoRw.getText()+"' ")>0){
+            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',ket_fisik)as keluhan from penilaian_medis_ralan_mata where no_rawat=?",TNoRw.getText())); 
+            PemeriksaanPenunjang.setText(Sequel.cariIsi("select rad from penilaian_medis_ralan_mata where no_rawat=?",TNoRw.getText())); 
+            HasilLaborat.setText(Sequel.cariIsi("select lab from penilaian_medis_ralan_mata where no_rawat=?",TNoRw.getText())); 
+            Obat2an.setText(Sequel.cariIsi("select terapi from penilaian_medis_ralan_mata where no_rawat=?",TNoRw.getText()));    
+         }else if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_ralan_neurologi where no_rawat='"+TNoRw.getText()+"' ")>0){
+            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',lainnya)as keluhan from penilaian_medis_ralan_neurologi where no_rawat=?",TNoRw.getText())); 
+            PemeriksaanPenunjang.setText(Sequel.cariIsi("select rad from penilaian_medis_ralan_neurologi where no_rawat=?",TNoRw.getText())); 
+            HasilLaborat.setText(Sequel.cariIsi("select lab from penilaian_medis_ralan_neurologi where no_rawat=?",TNoRw.getText())); 
+            Obat2an.setText(Sequel.cariIsi("select terapi from penilaian_medis_ralan_neurologi where no_rawat=?",TNoRw.getText())); 
+         }else if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_ralan_orthopedi where no_rawat='"+TNoRw.getText()+"' ")>0){
+            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',lainnya)as keluhan from penilaian_medis_ralan_orthopedi where no_rawat=?",TNoRw.getText())); 
+            PemeriksaanPenunjang.setText(Sequel.cariIsi("select rad from penilaian_medis_ralan_orthopedi where no_rawat=?",TNoRw.getText())); 
+            HasilLaborat.setText(Sequel.cariIsi("select lab from penilaian_medis_ralan_orthopedi where no_rawat=?",TNoRw.getText())); 
+            Obat2an.setText(Sequel.cariIsi("select terapi from penilaian_medis_ralan_orthopedi where no_rawat=?",TNoRw.getText()));  
+         }else if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_ralan_penyakit_dalam where no_rawat='"+TNoRw.getText()+"' ")>0){
+            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',lainnya)as keluhan from penilaian_medis_ralan_penyakit_dalam where no_rawat=?",TNoRw.getText())); 
+            PemeriksaanPenunjang.setText(Sequel.cariIsi("select rad from penilaian_medis_ralan_penyakit_dalam where no_rawat=?",TNoRw.getText())); 
+            HasilLaborat.setText(Sequel.cariIsi("select lab from penilaian_medis_ralan_penyakit_dalam where no_rawat=?",TNoRw.getText())); 
+            Obat2an.setText(Sequel.cariIsi("select terapi from penilaian_medis_ralan_penyakit_dalam where no_rawat=?",TNoRw.getText()));          
+        }else if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_ralan_psikiatrik where no_rawat='"+TNoRw.getText()+"' ")>0){
+            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',ketfisik)as keluhan from penilaian_medis_ralan_psikiatrik where no_rawat=?",TNoRw.getText())); 
+            PemeriksaanPenunjang.setText(Sequel.cariIsi("select penunjang from penilaian_medis_ralan_psikiatrik where no_rawat=?",TNoRw.getText())); 
+            HasilLaborat.setText(Sequel.cariIsi("select penunjang from penilaian_medis_ralan_psikiatrik where no_rawat=?",TNoRw.getText())); 
+            Obat2an.setText(Sequel.cariIsi("select tata from penilaian_medis_ralan_psikiatrik where no_rawat=?",TNoRw.getText()));       
+        }else if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_ralan_tht where no_rawat='"+TNoRw.getText()+"' ")>0){
+            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',lainnya)as keluhan from penilaian_medis_ralan_tht where no_rawat=?",TNoRw.getText())); 
+            PemeriksaanPenunjang.setText(Sequel.cariIsi("select rad from penilaian_medis_ralan_tht where no_rawat=?",TNoRw.getText())); 
+            HasilLaborat.setText(Sequel.cariIsi("select lab from penilaian_medis_ralan_tht where no_rawat=?",TNoRw.getText())); 
+            Obat2an.setText(Sequel.cariIsi("select tata from penilaian_medis_ralan_tht where no_rawat=?",TNoRw.getText()));       
+//        }else if(Sequel.cariInteger("select count(no_rawat) from pemeriksaan_ralan where no_rawat='"+TNoRw.getText()+"' ")>0){        
+//            Keluhan.setText(Sequel.cariIsi("select concat(keluhan_utama,'\n',lainnya)as keluhan from pemeriksaan_ralan where no_rawat=?",TNoRw.getText())); 
+//            PemeriksaanPenunjang.setText(Sequel.cariIsi("select rad from pemeriksaan_ralan where no_rawat=?",TNoRw.getText())); 
+//            HasilLaborat.setText(Sequel.cariIsi("select lab from pemeriksaan_ralan where no_rawat=?",TNoRw.getText())); 
+//            Obat2an.setText(Sequel.cariIsi("select tata from pemeriksaan_ralan where no_rawat=?",TNoRw.getText()));
+        }else if(Sequel.cariInteger("select count(no_rawat) from pemeriksaan_ralan where no_rawat='"+TNoRw.getText()+"' ")>0){ 
+            JOptionPane.showMessageDialog(null, "Data Tidak Ditemukan!!!");
+        }
+    }//GEN-LAST:event_btnGetActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2102,6 +2190,7 @@ public final class RMDataResumePasien extends javax.swing.JDialog {
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
     private widget.TextBox Tanggal;
+    private widget.Button btnGet;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
@@ -2494,4 +2583,6 @@ public final class RMDataResumePasien extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null,"Gagal menghapus..!!");
         }
     }
+    
+    
 }

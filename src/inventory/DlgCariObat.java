@@ -475,6 +475,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         TPasien = new widget.TextBox();
         TNoRM = new widget.TextBox();
         LblNoRawat = new widget.TextBox();
+        label1 = new widget.Label();
         TabRawat = new javax.swing.JTabbedPane();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -703,7 +704,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         FormInput.setBackground(new java.awt.Color(215, 225, 215));
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(100, 103));
+        FormInput.setPreferredSize(new java.awt.Dimension(901, 126));
         FormInput.setLayout(null);
 
         jLabel5.setText("Total :");
@@ -792,7 +793,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         jLabel8.setBounds(4, 40, 65, 23);
 
         DTPTgl.setForeground(new java.awt.Color(50, 70, 50));
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-04-2023" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-11-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -924,6 +925,14 @@ public final class DlgCariObat extends javax.swing.JDialog {
         LblNoRawat.setPreferredSize(new java.awt.Dimension(207, 23));
         FormInput.add(LblNoRawat);
         LblNoRawat.setBounds(72, 10, 123, 23);
+
+        label1.setForeground(new java.awt.Color(255, 0, 51));
+        label1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label1.setText("* Resep yang di Validasi, akan terkirim ke Database Satu Sehat Kemenkes");
+        label1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        label1.setName("label1"); // NOI18N
+        FormInput.add(label1);
+        label1.setBounds(70, 100, 360, 20);
 
         internalFrame1.add(FormInput, java.awt.BorderLayout.PAGE_START);
 
@@ -2104,6 +2113,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     private widget.Label jLabel8;
     private javax.swing.JPanel jPanel3;
     private widget.TextBox kdgudang;
+    private widget.Label label1;
     private widget.Label label12;
     private widget.Label label13;
     private widget.Label label21;

@@ -770,6 +770,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 column.setPreferredWidth(420);
             }else if(i==3){
                 column.setPreferredWidth(150);
+            }else if(i==4){
+                //sembunyikan harga
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }else if(i==5){
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -2693,9 +2697,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(lblJnsSurat);
         lblJnsSurat.setBounds(936, 10, 70, 23);
         
-        btnSurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
-        btnSurat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnSurat.setLabel("Buat");
+        btnSurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/icons8-write-16.png"))); // NOI18N
+        btnSurat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        //btnSurat.setLabel("");
+        btnSurat.setToolTipText("Buat Surat");
         btnSurat.setName("btnSurat"); // NOI18N
         btnSurat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2703,7 +2708,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnSurat);
-        btnSurat.setBounds(1140, 10, 70, 23);
+        btnSurat.setBounds(1140, 10, 23, 23);
         
         cmbJnsSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SKS", "SKK", "Buta Warna" }));
         cmbJnsSurat.setName("cmbJnsSurat"); // NOI18N
